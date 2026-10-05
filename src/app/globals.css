@@ -1,0 +1,162 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* ====== MODO CLARO: rojo y negro ====== */
+:root {
+  --radius: 0.625rem;
+  --background: #FFFFFF;
+  --foreground: #1A1A1A;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
+  /* Negro profundo como primario */
+  --primary: #1A1A1A;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F5F5F5;
+  --secondary-foreground: #1A1A1A;
+  --muted: #F5F5F5;
+  --muted-foreground: #6B6B6B;
+  /* Rojo E63946 como acento */
+  --accent: #E63946;
+  --accent-foreground: #FFFFFF;
+  --destructive: #E63946;
+  --border: #E5E5E5;
+  --input: #E5E5E5;
+  --ring: #E63946;
+  --chart-1: #E63946;
+  --chart-2: #1A1A1A;
+  --chart-3: #FF6B6B;
+  --chart-4: #4A4A4A;
+  --chart-5: #C1121F;
+  --sidebar: #1A1A1A;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #E63946;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #2A2A2A;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #333333;
+  --sidebar-ring: #E63946;
+}
+
+/* ====== MODO OSCURO: rojo y negro ====== */
+.dark {
+  --background: #121212;
+  --foreground: #FFFFFF;
+  --card: #1E1E1E;
+  --card-foreground: #FFFFFF;
+  --popover: #1E1E1E;
+  --popover-foreground: #FFFFFF;
+  --primary: #FFFFFF;
+  --primary-foreground: #121212;
+  --secondary: #2A2A2A;
+  --secondary-foreground: #FFFFFF;
+  --muted: #2A2A2A;
+  --muted-foreground: #A0A0A0;
+  --accent: #FF4D4D;
+  --accent-foreground: #FFFFFF;
+  --destructive: #FF4D4D;
+  --border: #333333;
+  --input: #333333;
+  --ring: #FF4D4D;
+  --chart-1: #FF4D4D;
+  --chart-2: #E0E0E0;
+  --chart-3: #FF8080;
+  --chart-4: #888888;
+  --chart-5: #FF0000;
+  --sidebar: #0A0A0A;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #FF4D4D;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #1E1E1E;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #1A1A1A;
+  --sidebar-ring: #FF4D4D;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Print styles for invoices and warranty certificates */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+  .print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .no-print {
+    display: none !important;
+  }
+}

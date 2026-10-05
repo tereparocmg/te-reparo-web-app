@@ -1,0 +1,17 @@
+// /api/sync/start — Arrancar el sync worker
+
+import { NextResponse } from 'next/server'
+import { startWorker, getStatus } from '@/lib/sync-worker'
+import { requireUser } from '@/lib/session'
+
+export async function POST() {
+  try {
+    await requireUser()
+  } catch {
+    return NextResponse.json({ error: 'No autenticado' }, { status: 401 })
+  }
+
+  startWorker()
+  const status = await getStatus()
+  return NextResponse.json({ ok: true, status })
+}
